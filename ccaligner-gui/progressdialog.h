@@ -19,7 +19,7 @@ public:
   ~ProgressDialog();
 
 public slots:
-  void startAlignment();
+  void onProcessReadyRead();
 
 private:
   Ui::ProgressDialog* ui;

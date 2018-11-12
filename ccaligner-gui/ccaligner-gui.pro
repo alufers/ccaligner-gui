@@ -39,7 +39,6 @@ FORMS += \
         mainwindow.ui \
     progressdialog.ui
 QT += concurrent
-INCLUDEPATH += $$PWD/../../src/lib_ccaligner
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

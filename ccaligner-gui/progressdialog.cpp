@@ -8,22 +8,31 @@
 ProgressDialog::ProgressDialog(QWidget* parent, const CCAlignerOptions* opts)
   : QDialog(parent)
   , ui(new Ui::ProgressDialog)
-  , ccAlignerProcess()
 {
   ui->setupUi(this);
-  ccAlignerProcess->start(
-    QProcessEnvironment::systemEnvironment().value(
-      "CCALIGNER_PATH", "../../CCAligner/install/ccaligner"),
-    opts->assembleArguments(),
-    QIODevice::ReadWrite);
-  // QObject::connect(ccAlignerProcess, SIGNAL())
+  ccAlignerProcess = new QProcess();
+  ccAlignerProcess->start(QProcessEnvironment::systemEnvironment().value(
+                            "CCALIGNER_PATH", "ccaligner"),
+                          opts->assembleArguments(),
+                          QIODevice::ReadWrite);
+  QObject::connect(ccAlignerProcess,
+                   SIGNAL(readyReadStandardOutput()),
+                   this,
+                   SLOT(onProcessReadyRead()));
 }
 
 void
-ProgressDialog::startAlignment()
-{}
+ProgressDialog::onProcessReadyRead()
+{
+  // auto data = ccAlignerProcess->readLine(10000);
+  while (ccAlignerProcess->canReadLine()) {
+    ui->outputText->appendPlainText(ccAlignerProcess->readLine());
+  }
+}
 
 ProgressDialog::~ProgressDialog()
 {
   delete ui;
+  ccAlignerProcess->kill();
+  delete ccAlignerProcess;
 }
