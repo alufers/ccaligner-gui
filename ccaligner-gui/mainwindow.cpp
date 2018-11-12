@@ -121,5 +121,6 @@ MainWindow::startAlignment()
     MainWindow::formatNamesToOutputFormatEnum[ui->outputFormatComboBox
                                                 ->currentText()];
   auto progress = new ProgressDialog(this, &opts);
-  progress->show();
+  progress->exec();
+  delete progress;
 }

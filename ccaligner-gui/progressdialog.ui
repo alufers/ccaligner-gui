@@ -31,7 +31,13 @@
       </widget>
      </item>
      <item>
-      <widget class="QPlainTextEdit" name="outputText"/>
+      <widget class="QPlainTextEdit" name="outputText">
+       <property name="font">
+        <font>
+         <family>Courier New</family>
+        </font>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">

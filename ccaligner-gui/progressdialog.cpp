@@ -26,7 +26,9 @@ ProgressDialog::onProcessReadyRead()
 {
   // auto data = ccAlignerProcess->readLine(10000);
   while (ccAlignerProcess->canReadLine()) {
-    ui->outputText->appendPlainText(ccAlignerProcess->readLine());
+    ui->outputText->moveCursor(QTextCursor::End);
+    ui->outputText->appendPlainText(ccAlignerProcess->readLine().trimmed());
+    ui->outputText->moveCursor(QTextCursor::End);
   }
 }
 
