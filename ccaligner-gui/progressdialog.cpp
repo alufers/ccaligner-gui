@@ -11,14 +11,23 @@ ProgressDialog::ProgressDialog(QWidget* parent, const CCAlignerOptions* opts)
 {
   ui->setupUi(this);
   ccAlignerProcess = new QProcess();
-  ccAlignerProcess->start(QProcessEnvironment::systemEnvironment().value(
-                            "CCALIGNER_PATH", "ccaligner"),
-                          opts->assembleArguments(),
-                          QIODevice::ReadWrite);
+  QString programPath = QProcessEnvironment::systemEnvironment().value(
+    "CCALIGNER_PATH", "ccaligner");
+  if (programPath !=
+      "ccaligner") { // set working directory if custom path is used
+    ccAlignerProcess->setWorkingDirectory(
+      QFileInfo(programPath).absolutePath());
+  }
+
+  ccAlignerProcess->start(
+    programPath, opts->assembleArguments(), QIODevice::ReadWrite);
   QObject::connect(ccAlignerProcess,
                    SIGNAL(readyReadStandardOutput()),
                    this,
                    SLOT(onProcessReadyRead()));
+
+  //  QObject::connect(
+  //    this, SIGNAL(finished(int)), ccAlignerProcess, SLOT(terminate()));
 }
 
 void
@@ -35,6 +44,6 @@ ProgressDialog::onProcessReadyRead()
 ProgressDialog::~ProgressDialog()
 {
   delete ui;
-  ccAlignerProcess->kill();
+  ccAlignerProcess->terminate();
   delete ccAlignerProcess;
 }
