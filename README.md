@@ -10,3 +10,4 @@ To develop or to compile the project just open the `ccaligner-gui/ccaligner-gui.
 
 To run CCAligner-gui you will need to place the `ccaligner` on your `PATH` or in the same directory as `ccaligner-gui`. Alternatively you can use the `CCALIGNER_PATH` envronment variable to point to a custom installation.
 
+:warning: Please keep in mind that `ccaligner` needs some dependencies beside the binary in its directory. For further information consult the CCAligner README.
