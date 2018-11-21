@@ -8,8 +8,7 @@
 #include <QFileInfo>
 #include <QMainWindow>
 #include <QMap>
-#include "aboutdialog.h";
-
+#include "aboutdialog.h"
 namespace Ui {
 class MainWindow;
 }

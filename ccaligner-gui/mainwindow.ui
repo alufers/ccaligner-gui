@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>978</width>
-    <height>655</height>
+    <height>930</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -187,9 +187,23 @@
        </layout>
       </item>
       <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>Extra options</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="extraOptionsPlainTextEdit"/>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>4</number>
+         <number>3</number>
         </property>
         <widget class="QWidget" name="generalPage">
          <attribute name="title">
@@ -651,21 +665,6 @@
             </layout>
            </item>
           </layout>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="extraOptionsTab">
-         <attribute name="title">
-          <string>Extra options</string>
-         </attribute>
-         <widget class="QPlainTextEdit" name="extraOptionsPlainTextEdit">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>951</width>
-            <height>311</height>
-           </rect>
-          </property>
          </widget>
         </widget>
        </widget>
