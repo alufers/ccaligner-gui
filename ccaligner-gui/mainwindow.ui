@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>978</width>
-    <height>542</height>
+    <height>655</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,58 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout_7">
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QLabel" name="label_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>5</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>30</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>CCAligner</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="aboutButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>About</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
@@ -137,9 +189,9 @@
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
-        <widget class="QWidget" name="tab">
+        <widget class="QWidget" name="generalPage">
          <attribute name="title">
           <string>General</string>
          </attribute>
@@ -154,14 +206,282 @@
           </property>
           <layout class="QFormLayout" name="formLayout">
            <item row="0" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="minimumSize">
+              <size>
+               <width>150</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="modeComboBox">
+             <item>
+              <property name="text">
+               <string>Normal</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Transcribe</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Approximate</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="grammarPage">
+         <attribute name="title">
+          <string>Grammar</string>
+         </attribute>
+         <widget class="QWidget" name="formLayoutWidget_2">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>-1</y>
+            <width>951</width>
+            <height>291</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout_3">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Generate grammar</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="generateGrammarComboBox">
+             <item>
+              <property name="text">
+               <string>Yes</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>No</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Only Corpus</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Only Dict</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Only FSG</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Only LM</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Only Vocab</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Accoustic model</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_13">
+             <item>
+              <widget class="QLineEdit" name="accousticModelLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Language model</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_14">
+             <item>
+              <widget class="QLineEdit" name="languageModelLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_2">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Dictionary</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QLineEdit" name="dictionaryLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_3">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>FSG</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_16">
+             <item>
+              <widget class="QLineEdit" name="FSGLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_4">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Phonetic language model</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <widget class="QLineEdit" name="phoneticLanguageModelLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_5">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="quickDictionaryLabel">
+             <property name="text">
+              <string>Quick dictionary</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QCheckBox" name="quickDictionaryCheckBox"/>
+           </item>
+           <item row="7" column="0">
+            <widget class="QLabel" name="quickLanguageModelLabel">
+             <property name="text">
+              <string>Quick language model</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
+            <widget class="QCheckBox" name="quickLanguageModelCheckBox">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="alignmentPage">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <attribute name="title">
+          <string>Alignment</string>
+         </attribute>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>1</x>
+            <y>12</y>
+            <width>941</width>
+            <height>176</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Enable phonemes</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QCheckBox" name="enablePhonemesCheckBox">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
             <widget class="QLabel" name="label_4">
              <property name="text">
               <string>Search window (s)</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item row="4" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_12">
+             <item>
+              <widget class="QSpinBox" name="searchWindowSpinBox">
+               <property name="value">
+                <number>3</number>
+               </property>
+              </widget>
+             </item>
              <item>
               <widget class="QSlider" name="searchWindowSlider">
                <property name="value">
@@ -172,73 +492,163 @@
                </property>
               </widget>
              </item>
+            </layout>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Audio window</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QSpinBox" name="searchWindowSpinBox">
+              <widget class="QSpinBox" name="audioWindowSpinBox">
                <property name="value">
-                <number>3</number>
+                <number>0</number>
                </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="audioWindowSlider">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="audioWindowTypeComboBox">
+               <item>
+                <property name="text">
+                 <string>ms</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>samples</string>
+                </property>
+               </item>
               </widget>
              </item>
             </layout>
            </item>
-          </layout>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="tab_2">
-         <attribute name="title">
-          <string>Advanced</string>
-         </attribute>
-         <widget class="QWidget" name="layoutWidget_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>0</y>
-            <width>341</width>
-            <height>182</height>
-           </rect>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5" stretch="1,1,1,1,1,1">
-           <item>
-            <widget class="QCheckBox" name="checkBox">
+           <item row="1" column="0">
+            <widget class="QLabel" name="useFSGLabel">
              <property name="text">
-              <string>Use approx aligner</string>
+              <string>Use FSG</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_2">
-             <property name="text">
-              <string>Enable phonemes</string>
-             </property>
-            </widget>
+           <item row="1" column="1">
+            <widget class="QCheckBox" name="useFSGCheckBox"/>
            </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_3">
-             <property name="text">
-              <string>Transcribe</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_4">
-             <property name="text">
-              <string>Follow Finite State Grammar</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_5">
+           <item row="2" column="0">
+            <widget class="QLabel" name="useBatchModeLabel">
              <property name="text">
               <string>Use batch mode</string>
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QCheckBox" name="checkBox_6">
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="useBatchModeCheckBox"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="useExperimentalParametersLabel">
              <property name="text">
               <string>Use experimental parameters</string>
              </property>
             </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QCheckBox" name="experimentCheckBox">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="outputLoggingPage">
+         <attribute name="title">
+          <string>Output &amp;&amp; Logging</string>
+         </attribute>
+         <widget class="QWidget" name="formLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>-1</y>
+            <width>951</width>
+            <height>301</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="formLayout_4">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Phoneme decoder log</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="verboseLabel">
+             <property name="text">
+              <string>verbose</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QCheckBox" name="verboseCheckBox"/>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="displayRecognisedLabel">
+             <property name="text">
+              <string>Display recognised</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QCheckBox" name="displayRecognisedCheckBox">
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <widget class="QLineEdit" name="logLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_6">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Log</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="horizontalLayout_19">
+             <item>
+              <widget class="QLineEdit" name="phonemeDecoderLogLineEdit"/>
+             </item>
+             <item>
+              <widget class="QToolButton" name="toolButton_7">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -262,7 +672,7 @@
      <x>0</x>
      <y>0</y>
      <width>978</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -274,7 +684,11 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+  </widget>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
     <string>toolBar</string>
@@ -302,34 +716,66 @@
  <resources/>
  <connections>
   <connection>
-   <sender>searchWindowSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>searchWindowSpinBox</receiver>
-   <slot>setValue(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>239</x>
-     <y>223</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>163</x>
-     <y>232</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>searchWindowSpinBox</sender>
    <signal>valueChanged(int)</signal>
    <receiver>searchWindowSlider</receiver>
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>175</x>
-     <y>217</y>
+     <x>255</x>
+     <y>392</y>
     </hint>
     <hint type="destinationlabel">
-     <x>375</x>
-     <y>233</y>
+     <x>307</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchWindowSlider</sender>
+   <signal>sliderMoved(int)</signal>
+   <receiver>searchWindowSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>450</x>
+     <y>393</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>385</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>audioWindowSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>audioWindowSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>429</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>320</x>
+     <y>423</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>audioWindowSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>audioWindowSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>389</x>
+     <y>424</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>243</x>
+     <y>430</y>
     </hint>
    </hints>
   </connection>

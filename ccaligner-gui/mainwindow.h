@@ -8,6 +8,7 @@
 #include <QFileInfo>
 #include <QMainWindow>
 #include <QMap>
+#include "aboutdialog.h";
 
 namespace Ui {
 class MainWindow;
@@ -26,11 +27,13 @@ public slots:
   void browseOutputFile();
   void updateOutputExtension();
   void startAlignment();
+  void openAboutDialog();
 
 private:
   Ui::MainWindow* ui;
   static QMap<QString, QString> formatNamesToExtensions;
   static QMap<QString, QString> formatNamesToOutputFormatEnum;
+  static QMap<QString, QString> generateGrammarTextsToOptions;
 };
 
 #endif // MAINWINDOW_H

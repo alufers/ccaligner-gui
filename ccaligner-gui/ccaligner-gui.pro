@@ -28,16 +28,22 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     progressdialog.cpp \
-    ccaligneroptions.cpp
+    ccaligneroptions.cpp \
+    fileselector.cpp \
+    aboutdialog.cpp
 
 HEADERS += \
         mainwindow.h \
     progressdialog.h \
-    ccaligneroptions.h
+    ccaligneroptions.h \
+    fileselector.h \
+    aboutdialog.h
 
 FORMS += \
         mainwindow.ui \
-    progressdialog.ui
+    progressdialog.ui \
+    fileselector.ui \
+    aboutdialog.ui
 QT += concurrent
 
 # Default rules for deployment.
@@ -46,4 +52,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    CMakeLists.txt
+    CMakeLists.txt \
+    info.png \
+    resources/info.png
+
+RESOURCES += \
+    resources/resources.qrc

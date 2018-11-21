@@ -14,7 +14,6 @@ find_package(Qt5Widgets CONFIG REQUIRED)
 find_package(Qt5Concurrent CONFIG REQUIRED)
 
 
-
 if(UNIX)
     set (EXTRA_FLAGS ${EXTRA_FLAGS} -lpthread)
 endif(UNIX)
@@ -26,6 +25,10 @@ set(ccaligner-gui_SRCS
     progressdialog.cpp
     ccaligneroptions.cpp
     progressdialog.ui
+    fileselector.ui
+    fileselector.cpp
+    aboutdialog.ui
+    aboutdialog.cpp
     main.cpp
 )
 # Tell CMake to create the helloworld executable
