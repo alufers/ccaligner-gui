@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
                    SLOT(startAlignment()));
   QWidget::connect(ui->aboutButton, SIGNAL(clicked()), this,
                    SLOT(openAboutDialog()));
+
+
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -130,13 +132,16 @@ void MainWindow::startAlignment() {
   opts.phonemeDecoderLog = ui->phonemeDecoderLogLineEdit->text();
   opts.verbose = ui->verboseCheckBox->isChecked();
   opts.displayRecognised = ui->displayRecognisedCheckBox->isChecked();
+  opts.extraOptions = ui->extraOptionsPlainTextEdit->toPlainText().split(" ");
+
   auto progress = new ProgressDialog(this, &opts);
   progress->exec();
+
   delete progress;
 }
 
 void MainWindow::openAboutDialog() {
-    auto aboutDialog = new AboutDialog(this);
-    aboutDialog->exec();
-    delete aboutDialog;
+  auto aboutDialog = new AboutDialog(this);
+  aboutDialog->exec();
+  delete aboutDialog;
 }

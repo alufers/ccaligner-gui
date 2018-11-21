@@ -49,6 +49,7 @@ public:
   bool verbose = false;
   bool displayRecognised = true;
 
+  QStringList extraOptions;
   CCAlignerOptions();
   QStringList assembleArguments() const;
 };

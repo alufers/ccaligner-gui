@@ -47,5 +47,7 @@ QStringList CCAlignerOptions::assembleArguments() const {
       args.push_back("yes");
   }
 
+  args += this->extraOptions;
+
   return args;
 }

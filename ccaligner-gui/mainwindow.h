@@ -31,6 +31,7 @@ public slots:
 
 private:
   Ui::MainWindow* ui;
+
   static QMap<QString, QString> formatNamesToExtensions;
   static QMap<QString, QString> formatNamesToOutputFormatEnum;
   static QMap<QString, QString> generateGrammarTextsToOptions;
