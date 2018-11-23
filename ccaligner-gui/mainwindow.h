@@ -9,6 +9,8 @@
 #include <QMainWindow>
 #include <QMap>
 #include "aboutdialog.h"
+#include <QtDebug>
+
 namespace Ui {
 class MainWindow;
 }
@@ -27,10 +29,11 @@ public slots:
   void updateOutputExtension();
   void startAlignment();
   void openAboutDialog();
+  void browseExecutablePath();
 
 private:
   Ui::MainWindow* ui;
-
+    void autodetectExecutableLocation();
   static QMap<QString, QString> formatNamesToExtensions;
   static QMap<QString, QString> formatNamesToOutputFormatEnum;
   static QMap<QString, QString> generateGrammarTextsToOptions;

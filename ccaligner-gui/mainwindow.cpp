@@ -1,4 +1,9 @@
 #include "mainwindow.h"
+#include <QFile>
+#include <QFileInfo>
+#include <QJsonDocument>
+#include <QProcessEnvironment>
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -16,8 +21,64 @@ MainWindow::MainWindow(QWidget *parent)
                    SLOT(startAlignment()));
   QWidget::connect(ui->aboutButton, SIGNAL(clicked()), this,
                    SLOT(openAboutDialog()));
+  QWidget::connect(ui->executablePathBrowseButton, SIGNAL(clicked()), this,
+                   SLOT(browseExecutablePath()));
 
+  this->autodetectExecutableLocation();
+}
 
+void MainWindow::autodetectExecutableLocation() {
+  QString envValue =
+      QProcessEnvironment::systemEnvironment().value("CCALIGNER_PATH", "");
+  if (!envValue.isEmpty()) {
+    qInfo() << "Using CCALIGNER_PATH to setup the executable path.";
+    this->ui->executablePathLineEdit->setText(envValue);
+    return;
+  }
+
+  QFileInfo configFileInfo("settings.json");
+  if (configFileInfo.exists()) {
+    try {
+      // ...
+
+      qDebug() << "Found settings.json file, trying to read...";
+      QFile file;
+      file.setFileName(configFileInfo.absoluteFilePath());
+      file.open(QIODevice::ReadOnly | QIODevice::Text);
+      QString textData = file.readAll();
+      file.close();
+      auto doc = QJsonDocument::fromJson(textData.toUtf8());
+
+      QString pathFromConfig = doc["executablePath"].toString("");
+      if (!pathFromConfig.isEmpty()) {
+        qInfo() << "Using executable path from settings.json.";
+        this->ui->executablePathLineEdit->setText(pathFromConfig);
+        return;
+      }
+    } catch (...) {
+      qInfo() << "Failed to executable path from settings.json.";
+    }
+  }
+
+  QString exeName = "ccaligner";
+#ifdef Q_WS_WIN32
+  exeName = "ccaligner.exe";
+#endif
+  QString standardPath = QStandardPaths::findExecutable("ccaligner");
+  if (!standardPath.isEmpty()) {
+    qInfo() << "Using executable found in PATH.";
+    this->ui->executablePathLineEdit->setText(standardPath);
+    return;
+  }
+
+  QFileInfo localFileInfo("ccaligner");
+  if (localFileInfo.exists()) {
+    qInfo() << "Using executable found in current working directory.";
+    this->ui->executablePathLineEdit->setText(localFileInfo.absoluteFilePath());
+    return;
+  }
+
+  this->ui->executablePathLineEdit->setText("<not found>");
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -95,6 +156,7 @@ void MainWindow::updateOutputExtension() {
 
 void MainWindow::startAlignment() {
   CCAlignerOptions opts;
+  opts.executablePath = ui->executablePathLineEdit->text();
   opts.output = ui->outputFileLineEdit->text();
   opts.inputAudio = ui->audioFileLineEdit->text();
   opts.inputSubtitle = ui->subtitleFileLineEdit->text();
@@ -144,4 +206,10 @@ void MainWindow::openAboutDialog() {
   auto aboutDialog = new AboutDialog(this);
   aboutDialog->exec();
   delete aboutDialog;
+}
+
+void MainWindow::browseExecutablePath() {
+  auto filePath =
+      QFileDialog::getOpenFileName(this, tr("Open CCAligner executable"));
+  ui->executablePathLineEdit->setText(filePath);
 }

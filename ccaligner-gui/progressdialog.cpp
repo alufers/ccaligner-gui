@@ -4,6 +4,7 @@
 #include <QProcessEnvironment>
 #include <QtConcurrent>
 #include <iostream>
+#include <QDebug>
 
 ProgressDialog::ProgressDialog(QWidget* parent, const CCAlignerOptions* opts)
   : QDialog(parent)
@@ -11,16 +12,17 @@ ProgressDialog::ProgressDialog(QWidget* parent, const CCAlignerOptions* opts)
 {
   ui->setupUi(this);
   ccAlignerProcess = new QProcess();
-  QString programPath = QProcessEnvironment::systemEnvironment().value(
-    "CCALIGNER_PATH", "ccaligner");
+  QString programPath = opts->executablePath;
   if (programPath !=
       "ccaligner") { // set working directory if custom path is used
     ccAlignerProcess->setWorkingDirectory(
       QFileInfo(programPath).absolutePath());
   }
 
+  auto args = opts->assembleArguments();
+  qInfo() << "Starting ccaligner with the following arguments:" << args.join(" ");
   ccAlignerProcess->start(
-    programPath, opts->assembleArguments(), QIODevice::ReadWrite);
+    programPath, args , QIODevice::ReadWrite);
   QObject::connect(ccAlignerProcess,
                    SIGNAL(readyReadStandardOutput()),
                    this,

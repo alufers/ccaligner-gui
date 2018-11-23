@@ -17,6 +17,7 @@ enum class CCAlignerAudioWindowType {
 class CCAlignerOptions
 {
 public:
+    QString executablePath = "ccaligner";
   QString inputAudio;
   QString inputSubtitle;
   QString output;
