@@ -36,7 +36,7 @@ QStringList CCAlignerOptions::assembleArguments() const {
   boolParam("-experiment", this->useExperimentalParameters);
   boolParam("--quick-dict", this->quickDictionary);
   boolParam("--quick-lm", this->quickLanguageModel);
-  boolParam("-verbose", this->verbose);
+  //boolParam("--verbose", this->verbose);
   boolParam("--display-recognised", this->displayRecognised);
 
   if(this->mode == CCAlignerMode::approximate) {

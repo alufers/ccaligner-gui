@@ -194,8 +194,10 @@ void MainWindow::startAlignment() {
   opts.phonemeDecoderLog = ui->phonemeDecoderLogLineEdit->text();
   opts.verbose = ui->verboseCheckBox->isChecked();
   opts.displayRecognised = ui->displayRecognisedCheckBox->isChecked();
-  opts.extraOptions = ui->extraOptionsPlainTextEdit->toPlainText().split(" ");
-
+  QString extraText = ui->extraOptionsPlainTextEdit->toPlainText();
+  if (!extraText.isEmpty()) {
+    opts.extraOptions = extraText.split(" ");
+  }
   auto progress = new ProgressDialog(this, &opts);
   progress->exec();
 
