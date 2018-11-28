@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "aboutdialog.h"
 #include "ccaligneroptions.h"
 #include "progressdialog.h"
 #include "ui_mainwindow.h"
@@ -8,19 +9,17 @@
 #include <QFileInfo>
 #include <QMainWindow>
 #include <QMap>
-#include "aboutdialog.h"
 #include <QtDebug>
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
   Q_OBJECT
 
 public:
-  explicit MainWindow(QWidget* parent = nullptr);
+  explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 public slots:
   void browseAudioFile();
@@ -30,10 +29,12 @@ public slots:
   void startAlignment();
   void openAboutDialog();
   void browseExecutablePath();
+  void updateGeneratedCommand();
 
 private:
-  Ui::MainWindow* ui;
-    void autodetectExecutableLocation();
+  Ui::MainWindow *ui;
+  void autodetectExecutableLocation();
+  CCAlignerOptions createOptions();
   static QMap<QString, QString> formatNamesToExtensions;
   static QMap<QString, QString> formatNamesToOutputFormatEnum;
   static QMap<QString, QString> generateGrammarTextsToOptions;

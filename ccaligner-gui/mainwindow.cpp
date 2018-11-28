@@ -25,6 +25,27 @@ MainWindow::MainWindow(QWidget *parent)
                    SLOT(browseExecutablePath()));
 
   this->autodetectExecutableLocation();
+
+  for (auto widget : this->findChildren<QWidget *>()) {
+    if (auto lineEdit = qobject_cast<QLineEdit *>(widget)) {
+      QWidget::connect(lineEdit, SIGNAL(textChanged(QString)), this,
+                       SLOT(updateGeneratedCommand()));
+    } else if (auto lineEdit = qobject_cast<QCheckBox *>(widget)) {
+      QWidget::connect(lineEdit, SIGNAL(stateChanged(int)), this,
+                       SLOT(updateGeneratedCommand()));
+    } else if (auto lineEdit = qobject_cast<QSlider *>(widget)) {
+      QWidget::connect(lineEdit, SIGNAL(valueChanged(int)), this,
+                       SLOT(updateGeneratedCommand()));
+    } else if (auto lineEdit = qobject_cast<QSpinBox *>(widget)) {
+      QWidget::connect(lineEdit, SIGNAL(valueChanged(int)), this,
+                       SLOT(updateGeneratedCommand()));
+    } else if (auto lineEdit = qobject_cast<QComboBox *>(widget)) {
+      QWidget::connect(lineEdit, SIGNAL(currentIndexChanged(int)), this,
+                       SLOT(updateGeneratedCommand()));
+    }
+  }
+
+  this->updateGeneratedCommand();
 }
 
 void MainWindow::autodetectExecutableLocation() {
@@ -155,6 +176,14 @@ void MainWindow::updateOutputExtension() {
 }
 
 void MainWindow::startAlignment() {
+  auto opts = createOptions();
+  auto progress = new ProgressDialog(this, &opts);
+  progress->exec();
+
+  delete progress;
+}
+CCAlignerOptions MainWindow::createOptions() {
+
   CCAlignerOptions opts;
   opts.executablePath = ui->executablePathLineEdit->text();
   opts.output = ui->outputFileLineEdit->text();
@@ -194,14 +223,16 @@ void MainWindow::startAlignment() {
   opts.phonemeDecoderLog = ui->phonemeDecoderLogLineEdit->text();
   opts.verbose = ui->verboseCheckBox->isChecked();
   opts.displayRecognised = ui->displayRecognisedCheckBox->isChecked();
-  QString extraText = ui->extraOptionsPlainTextEdit->toPlainText();
+  QString extraText = ui->extraOptionsLineEdit->text();
   if (!extraText.isEmpty()) {
     opts.extraOptions = extraText.split(" ");
   }
-  auto progress = new ProgressDialog(this, &opts);
-  progress->exec();
-
-  delete progress;
+  return opts;
+}
+void MainWindow::updateGeneratedCommand() {
+  auto opts = createOptions();
+  this->ui->generatedCommandLineEdit->setText(
+      opts.executablePath + " " + opts.assembleArguments().join(" "));
 }
 
 void MainWindow::openAboutDialog() {

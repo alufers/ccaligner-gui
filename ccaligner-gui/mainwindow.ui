@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>978</width>
-    <height>930</height>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -212,19 +212,19 @@
         <item>
          <widget class="QLabel" name="label_17">
           <property name="text">
-           <string>Extra options</string>
+           <string>Custom arguments</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QPlainTextEdit" name="extraOptionsPlainTextEdit"/>
+         <widget class="QLineEdit" name="extraOptionsLineEdit"/>
         </item>
        </layout>
       </item>
       <item>
        <widget class="QTabWidget" name="tabWidget">
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="generalPage">
          <attribute name="title">
@@ -691,6 +691,20 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>Generated command</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="generatedCommandLineEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QPushButton" name="alignButton">
