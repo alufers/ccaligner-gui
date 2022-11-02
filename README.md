@@ -1,6 +1,6 @@
 # CCAligner-gui
 
-This is a QT GUI frontend for [CCAligner](https://github.com/saurabhshri/CCAligner). It allows you to configure the options of CCAligner intuitively. *The project is in a very early stage and lacks many features which will be added later.*
+This is a QT GUI frontend for [CCAligner](https://github.com/saurabhshri/CCAligner). It allows you to configure the options of CCAligner intuitively.
 
 ![video demo](demo.gif)
 
