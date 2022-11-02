@@ -4,6 +4,7 @@
 #include <QJsonDocument>
 #include <QProcessEnvironment>
 #include <QStandardPaths>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -85,7 +86,7 @@ void MainWindow::autodetectExecutableLocation() {
 #ifdef Q_WS_WIN32
   exeName = "ccaligner.exe";
 #endif
-  QString standardPath = QStandardPaths::findExecutable("ccaligner");
+  QString standardPath = QStandardPaths::findExecutable(exeName);
   if (!standardPath.isEmpty()) {
     qInfo() << "Using executable found in PATH.";
     this->ui->executablePathLineEdit->setText(standardPath);
@@ -98,6 +99,10 @@ void MainWindow::autodetectExecutableLocation() {
     this->ui->executablePathLineEdit->setText(localFileInfo.absoluteFilePath());
     return;
   }
+      QMessageBox Msgbox;
+
+      Msgbox.setText("CCAligner could not be found! Please install it or provide a path to the ccaligner excutable");
+      Msgbox.exec();
 
   this->ui->executablePathLineEdit->setText("<not found>");
 }
